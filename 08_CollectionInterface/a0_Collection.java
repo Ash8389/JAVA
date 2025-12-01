@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class a0_ArrayList {
+public class a0_Collection {
     public static void main(String[] args) {
         Collection<Integer> nums = new ArrayList<>();
 

@@ -16,5 +16,6 @@ public class a6_constructor {
     public static void main(String[] args) {
         demo obj = new demo();
         demo obj1 = new demo(10);
+        
     }
 }

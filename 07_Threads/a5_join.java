@@ -39,6 +39,6 @@ public class a5_join {
             System.out.println(e);
         }
 
-        System.out.println(c.count); //. By using join it will merge both the thread with main thread but due to race condition it will not give exactly 2000 output. 
+        System.out.println(c.count); //. By using join it will merge both the thread with main thread but due to race condition it will not give exactly 2000 output. For this we can use synchronized.
     }
 }

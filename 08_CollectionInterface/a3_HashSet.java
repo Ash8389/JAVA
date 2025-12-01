@@ -1,10 +1,10 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class a2_Set
+public class a3_HashSet
 {
     public static void main(String[] args) {
-        Set<Integer> s = new HashSet<>();
+        Set<Integer> s = new HashSet<>(); //. Unsorted
 
         s.add(82);
         s.add(86);

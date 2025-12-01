@@ -12,7 +12,7 @@ class Mobile
     }
 }
 
-public class a1_static
+public class a2_static_variable
 {
     public static void main(String a[])
     {

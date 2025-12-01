@@ -11,6 +11,6 @@ class A
 public class a10_Anonymous_obj
 {
     public static void main(String[] args) {
-        new A().show();
+        new A().show(); // Anonymous Object
     }
 }

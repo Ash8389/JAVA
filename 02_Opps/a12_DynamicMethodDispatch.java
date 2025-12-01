@@ -24,7 +24,7 @@ public class a12_DynamicMethodDispatch {
         Computer obj = new Computer();
         obj.show();
 
-        obj = new Laptop();
+        obj = new Laptop(); 
         obj.show();
 
         obj = new Desktop();
