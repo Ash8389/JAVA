@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +20,7 @@ public class AddServlet extends HttpServlet
 		int j = Integer.parseInt( req.getParameter("num2"));
 		
 		
-		// PrintWriter pw =  res.getWriter();
+		 PrintWriter pw =  res.getWriter();
 		// pw.print("Result is: " + (i+j));
 
 		//.RequestDispatcher
@@ -35,10 +36,10 @@ public class AddServlet extends HttpServlet
 		// session.setAttribute("num", i+j);
 		// res.sendRedirect("sq");
 		
+		//.Cookie
+		 Cookie cookie = new Cookie("num", (i+j)+"");
+		 res.addCookie(cookie);
+		 res.sendRedirect("sq");
 		
-		Cookie cookie = new Cookie("num", (i+j)+"");
-		res.addCookie(cookie);
-		res.sendRedirect("sq");
-
 	}
 }
