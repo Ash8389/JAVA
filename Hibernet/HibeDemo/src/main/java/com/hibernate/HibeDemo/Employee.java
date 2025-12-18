@@ -1,28 +1,36 @@
 package com.hibernate.HibeDemo;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-
 @Entity
+@Table(name = "employee")
 public class Employee {
-	@Id
-	private int id;
-	private String name;
-	
-	@OneToMany(mappedBy = "emp", cascade = CascadeType.ALL)
-	private List<Laptop> lap = new ArrayList<>();
 
-	public int getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @OneToMany(
+        mappedBy = "employee",
+        cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY
+    )
+    private List<Laptop> laptops = new ArrayList<>();
+    
+
+    // Getters & Setters
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -34,13 +42,19 @@ public class Employee {
 		this.name = name;
 	}
 
-	public List<Laptop> getLap() {
-		return lap;
+	public List<Laptop> getLaptops() {
+		return laptops;
 	}
 
-	public void setLap(List<Laptop> lap) {
-		this.lap = lap;
+	public void setLaptops(List<Laptop> laptops) {
+		this.laptops = laptops;
 	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", laptops=" + laptops + "]";
+	}
+
 	
-	
+    
 }
