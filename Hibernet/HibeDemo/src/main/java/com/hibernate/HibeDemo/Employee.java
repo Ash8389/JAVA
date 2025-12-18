@@ -5,26 +5,24 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name = "employee")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Employee {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private String name;
+	@Column(nullable = false)
+	private String name;
 
-    @OneToMany(
-        mappedBy = "employee",
-        cascade = CascadeType.ALL,
-        fetch = FetchType.LAZY
-    )
-    private List<Laptop> laptops = new ArrayList<>();
-    
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Laptop> laptops = new ArrayList<>();
 
-    // Getters & Setters
+	// Getters & Setters
 
 	public Long getId() {
 		return id;
@@ -55,6 +53,4 @@ public class Employee {
 		return "Employee [id=" + id + ", name=" + name + ", laptops=" + laptops + "]";
 	}
 
-	
-    
 }

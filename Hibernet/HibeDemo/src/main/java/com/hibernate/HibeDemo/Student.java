@@ -1,5 +1,8 @@
 package com.hibernate.HibeDemo;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
@@ -9,6 +12,10 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name= "Students")
+@Cacheable
+@org.hibernate.annotations.Cache(
+    usage = CacheConcurrencyStrategy.READ_ONLY
+)
 public class Student {
 	@Id
 	@Column(name= "roll_no")

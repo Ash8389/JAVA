@@ -1,22 +1,25 @@
 package com.hibernate.HibeDemo;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "laptop")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Laptop {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String brand;
+	private String brand;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "emp_id")
-    private Employee employee;
-    
-    // Getters & Setters
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "emp_id")
+	private Employee employee;
+
+	// Getters & Setters
 
 	public Long getId() {
 		return id;
@@ -47,6 +50,4 @@ public class Laptop {
 		return "Laptop [id=" + id + ", brand=" + brand + "]";
 	}
 
-
-	
 }
