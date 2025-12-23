@@ -1,47 +1,96 @@
 package com.jersey.JerseyApi;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+
 public class StudentRepository {
-	List<Student> studs;
-	
-	public StudentRepository() {
-		studs = new ArrayList<Student>();
-		
-		Student stud1 = new Student();
-		stud1.setName("Rose");
-		stud1.setRoll(01);
-		
-		Student stud2 = new Student();
-		stud2.setName("Ashish");
-		stud2.setRoll(02);
-		
-		studs.add(stud1);
-		studs.add(stud2);
-	}
 	
 	public List<Student> getStudents() {
-		System.out.println("Get Students Called..");
-		return studs;
+		
+		EntityManager em = JPAUtil.emf.createEntityManager();
+		
+		try {
+			
+			TypedQuery<Student> query = em.createQuery("SELECT s FROM Student s", Student.class);
+			return query.getResultList();
+		}finally{			
+			em.close();
+		}
+		
+		
 	}
 	
 	public Student getStudent(int roll) {
 		Student s = null;
 		
-		for(Student x: studs) {
-			if(x.getRoll() == roll) {
-				s = x;
-				break;
-			}
-		}
+		EntityManager em = JPAUtil.emf.createEntityManager();
+		
+		s = em.find(Student.class, roll);
+		
+		em.close();
 		
 		return s;
 	}
 
 	public void addStud(Student s) {
+		EntityManager em = JPAUtil.emf.createEntityManager();
 		
-		studs.add(s);
+		EntityTransaction ts = em.getTransaction();
+		
+		ts.begin();
+		
+		em.persist(s);
+		
+		ts.commit();
+		
+		em.close();
 	}
-	
+
+	public boolean delStudent(int roll) {
+		
+		EntityManager em = JPAUtil.emf.createEntityManager();
+		EntityTransaction ts = em.getTransaction();
+		
+		try {
+			ts.begin();
+			Student s = em.find(Student.class, roll);
+			if(s==null) return false;
+			
+			em.remove(s);
+			
+			
+			ts.commit();
+			
+			return true;
+		}finally {
+			em.close();
+		}
+
+	}
+
+	public Student updateStudent(int roll, Student s) {
+		
+		EntityManager em = JPAUtil.emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		
+		try {
+			tx.begin();
+			
+			Student exist = em.find(Student.class, roll);
+			
+			if(exist == null) return null;
+			
+			exist.setName(s.getName());
+			
+			tx.commit();
+			
+			return exist;
+			
+		} finally {
+			em.close();
+		}
+	}
 }
