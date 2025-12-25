@@ -71,9 +71,22 @@
       <artifactId>mysql-connector-j</artifactId>
       <version>9.4.0</version>
     </dependency>
+    
+    <!-- PDF / Jakarta XML Binding API -->
+    <dependency>
+        <groupId>jakarta.xml.bind</groupId>
+        <artifactId>jakarta.xml.bind-api</artifactId>
+        <version>4.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.glassfish.jaxb</groupId>
+        <artifactId>jaxb-runtime</artifactId>
+        <version>4.0.5</version>
+    </dependency>
     </dependencies>
     <properties>
         <jersey.version>4.0.0</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>21</maven.compiler.release>
     </properties>
 </project>
