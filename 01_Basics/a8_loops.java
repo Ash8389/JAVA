@@ -14,5 +14,7 @@ public class a8_loops {
         for(int j = 1 ;j <= 5; j++){
             System.out.println("FOR LOOP!!!");
         }
+
+        System.out.println("Program runs.");
     }
 }
